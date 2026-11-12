@@ -1,4 +1,3 @@
-
 import React from "react";
 import { createRoot } from "react-dom/client";
 import {
@@ -46,6 +45,7 @@ const projects = [
   {
     number: "01",
     type: "ENTERPRISE · GENERATIVE AI",
+    badge: "ENTERPRISE",
     title: "GenAI IAM Chat Assistant",
     summary: "An enterprise assistant designed to help users navigate Identity & Access Management workflows across multiple internal applications.",
     details: [
@@ -54,12 +54,12 @@ const projects = [
       "Helped implement MCP-based tool wrappers for IAM application actions.",
       "Worked on intent-based playbooks to load relevant tools and reduce unnecessary context."
     ],
-    stack: ["AWS Bedrock", "LangGraph", "FastAPI", "MCP", "Angular", "DynamoDB"],
-    note: "Built as part of a client engagement at TCS. Screenshots and source code are not displayed because the work is confidential."
+    stack: ["AWS Bedrock", "LangGraph", "FastAPI", "MCP", "Angular", "DynamoDB"]
   },
   {
     number: "02",
     type: "COMPUTER VISION · PERSONAL PROJECT",
+    badge: "POC",
     title: "Face Detection File Vault",
     summary: "A file-vault concept that explores face detection as an additional layer in a file access workflow.",
     details: [
@@ -71,6 +71,7 @@ const projects = [
   {
     number: "03",
     type: "WEB · PERSONAL PROJECT",
+    badge: "POC",
     title: "AI Chatbot for Navigation",
     summary: "A chatbot concept focused on helping users navigate information through a conversational interface.",
     details: [
@@ -84,6 +85,10 @@ const projects = [
 function App() {
   const [menuOpen, setMenuOpen] = React.useState(false);
   const closeMenu = () => setMenuOpen(false);
+
+  const base = import.meta.env.BASE_URL || "./";
+  const cleanBase = base.endsWith("/") ? base : `${base}/`;
+  const resumeHref = `${cleanBase}Praveen_resume_2026.pdf`;
 
   return (
     <div className="site-shell">
@@ -141,7 +146,7 @@ function App() {
               </a>
 
               <a
-                href={`${import.meta.env.BASE_URL}Praveen_resume_2026.pdf`}
+                href={resumeHref}
                 download="Praveen_resume_2026.pdf"
                 className="button button-quiet"
               >
@@ -326,7 +331,7 @@ function App() {
 
                   <div className="project-symbol">
                     <Layers3 size={34} strokeWidth={1} />
-                    <span>CASE<br />STUDY</span>
+                    <span>{p.badge}</span>
                   </div>
                 </article>
               ))}
